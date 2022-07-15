@@ -1,5 +1,6 @@
 package jana60.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ public class DepartmentsController {
 	@GetMapping
 	public String depart(Model model) {
 		
-		List<Departments> departList = (List<Departments>)repo.findAll();
+		List<Departments> departList = (List<Departments>)repo.findAllByOrderByName();
+		List<Departments> emptyList = new ArrayList<Departments>();
 		
 		model.addAttribute("departList", departList);
 		

@@ -21,7 +21,7 @@ public class CoursesController {
 	@GetMapping("/courses")
 	public String courses(Model model) {
 		
-		List<Courses> coursesList = (List<Courses>)repo.findAll();
+		List<Courses> coursesList = (List<Courses>)repo.findAllByOrderByName();
 		
 		model.addAttribute("coursesList", coursesList);
 		
