@@ -29,12 +29,14 @@
   </thead>
   <tbody>  <!--mi basta un tr, faccio i cicli perripeterlo per ogi dip-->
     <tr th:each="dep: ${departList}">
-      <th scope="row" th:text="${dep.getName()}">1</th>
-      <td th:text="${dep.getAddress()}">Mark</td>
-      <td th:text="${dep.getPhone()}">Otto</td>
-      <td th:text="${dep.getEmail()}">>@mdo</td>
-      <td th:text="${dep.getWebSite()}">@mdo</td>
-      <td th:text="${dep.getHeadOfDepartment()}">@mdo</td>
+      <th scope="row">
+      <a th:href="@{|/departments/${dep.departmentsId}|}" th:text="${dep.getName()}"></a>
+      </th>
+      <td th:text="${dep.getAddress()}"></td>
+      <td th:text="${dep.getPhone()}"></td>
+      <td th:text="${dep.getEmail()}"></td>
+      <td th:text="${dep.getWebSite()}"></td>
+      <td th:text="${dep.getHeadOfDepartment()}"></td>
     </tr>
      </tbody>
 </table>

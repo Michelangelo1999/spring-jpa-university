@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,11 @@ public class Courses {
 	private String description;
 	private String period;
 	private int cfu;
+	
+	@ManyToOne
+	@JoinColumn(name = "degreeId")
+	private Degrees degree;
+	
 	
 	//getters and setters
 	public int getCoursesId() {
@@ -52,6 +60,19 @@ public class Courses {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;
 	}
+	
+	public Degrees getDegree() {
+		return degree;
+	}
+	public void setDegree(Degrees degree) {
+		this.degree = degree;
+	}
+	
+	public String getDegreeName() {
+		return this.degree.getName();
+	}
+	
+	
 	
 	
 

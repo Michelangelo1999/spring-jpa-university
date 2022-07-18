@@ -1,18 +1,22 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <div th:replace="fragments :: risorse"></div>
-    <title>University</title>
+    <title>Regions</title>
   </head>
   <body>
-    
-    <nav th:replace="fragments :: navbar(degrees)"></nav>
-    
+  
+    <nav th:replace="fragments :: navbar('departments')"></nav>
+
     <div class="container">
-    <h1 class="mx-auto w-50">Degrees</h1>
-    <ul class="list-group w-50 mx-auto">
-    <li class="list-group-item" th:each="degrees : ${degreesList}" th:text="${degrees.getName()} + ', ' + ${degrees.getDepartmentsName()}"></li>
-    </ul>
+       <h1 th:text="${department.name}"></h1> <!-- il region qua dentro, come al solito, deve corrispondere alla chiave nel controller, metto il punto per accedere a un parametro-->
+       <h3>Degrees</h3>
+<!--       <div th:text="${region.countries}"></div>-->
+       <ul>
+          <li th:each="currentDegree : ${department.degrees}" th:text="${currentDegree.name}"></li>
+<!--Leggo l'attributo countries dell'oggeto region; -> scrivo l'attributo name dell'oggeto country a cui ho appena acceduto-->
+       </ul>
     </div>
 
     <!-- Optional JavaScript -->

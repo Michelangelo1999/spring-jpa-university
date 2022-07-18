@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jana60.model.Departments;
@@ -25,9 +26,20 @@ public class DepartmentsController {
 		List<Departments> departList = (List<Departments>)repo.findAllByOrderByName();
 		List<Departments> emptyList = new ArrayList<Departments>();
 		
+		
 		model.addAttribute("departList", departList);
 		
 		return "departments";
+	}
+	
+	@GetMapping("departments/{departmentsId}")
+	public String departmentDetail(@PathVariable(name="departmentsId") int departmentsPk, Model model) {
+		
+		Departments currentDepartment = repo.findById(departmentsPk).get();
+		model.addAttribute("department", currentDepartment);
+		
+		return "departmentDetail";
+		
 	}
 
 }
