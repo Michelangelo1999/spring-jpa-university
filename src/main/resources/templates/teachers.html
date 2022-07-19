@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <div th:replace="fragments :: risorse"></div>
+    <title>University</title>
+  </head>
+  <body>
+    
+     <nav th:replace="fragments :: navbar(teachers)"></nav>
+<!--    <h1 class="mx-auto w-50">Departments</h1>-->
+    
+<!--    <ul class="list-group w-50 mx-auto">-->
+<!--    <li class="list-group-item" th:each="depart : ${departList}" th:text="${depart.getName()} + ', responsabile: ' + ${depart.getHeadOfDepartment}"></li>-->
+<!--    </ul>-->
+    
+    <div class="container">
+    <h1 th:if="${teachersList.size() > 0}" class="mx-auto w-50">Teachers informations</h1>
+    
+    <table class="table table-striped" th:if="${teachersList.size() > 0}">
+  <thead>
+    <tr>   <!-- creo una riga per ohni dep, quindi il t-each lo metto sull'el che si ripete -->
+                <th scope="col">name</th>
+                <th scope="col">surname</th>
+                <th scope="col">phone</th>
+                <th scope="col">email</th>
+                <th scope="col">office address</th>
+                <th scope="col">office number</th>
+                <th scope="col">info</th>
+            </tr>
+  </thead>
+  <tbody>  <!--mi basta un tr, faccio i cicli perripeterlo per ogi dip-->
+    <tr th:each="doc: ${teachersList}">
+      <td th:text="${doc.name}"></td>
+      <td th:text="${doc.surname}"></td>
+      <td th:text="${doc.phone}"></td>
+      <td th:text="${doc.email}"></td>
+      <td th:text="${doc.officeAddress}"></td>
+      <td th:text="${doc.officeNumber}"></td>
+      <td class="button">
+      <a th:href="@{|/detail/${doc.teacherId}|}">Corsi</a>
+      </td>
+    </tr>
+     </tbody>
+</table>
+    
+    <h3 class="mx-auto w-50" th:if="${departList.size() == 0}">Nessun dipartimento trovato</h3>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

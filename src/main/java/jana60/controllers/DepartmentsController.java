@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jana60.model.Departments;
 import jana60.repository.DepartmentsRepository;
@@ -41,5 +42,15 @@ public class DepartmentsController {
 		return "departmentDetail";
 		
 	}
+	
+	//localhost:8080/search?query=ciao
+	
+	@GetMapping("search")
+	public String search(@RequestParam(name="query") String query, Model model) {
+		model.addAttribute("query", query);
+		
+		return "departments";
+	}
 
 }
+

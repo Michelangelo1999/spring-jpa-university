@@ -1,11 +1,14 @@
 package jana60.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,7 +31,16 @@ public class Courses {
 	@JoinColumn(name = "degreeId")
 	private Degrees degree;
 	
+	@ManyToMany(mappedBy = "courses")   //è mappato dall'attributo courses su teachers
+	private List<Teacher> teachers;
 	
+	
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
 	//getters and setters
 	public int getCoursesId() {
 		return coursesId;
