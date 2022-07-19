@@ -25,7 +25,7 @@ public class DepartmentsController {
 	public String depart(Model model) {
 		
 		List<Departments> departList = (List<Departments>)repo.findAllByOrderByName();
-		List<Departments> emptyList = new ArrayList<Departments>();
+//		List<Departments> emptyList = new ArrayList<Departments>();
 		
 		
 		model.addAttribute("departList", departList);
@@ -45,10 +45,12 @@ public class DepartmentsController {
 	
 	//localhost:8080/search?query=ciao
 	
-	@GetMapping("search")
+	@GetMapping("/search")
 	public String search(@RequestParam(name="query") String query, Model model) {
-		model.addAttribute("query", query);
 		
+		List<Departments> departListQuery = (List<Departments>)repo.findByNameContainsIgnoreCase(query);
+		model.addAttribute("departList", departListQuery);
+		System.out.println(departListQuery);
 		return "departments";
 	}
 
